@@ -1,23 +1,42 @@
 function addGame() {
 
-    let title = prompt(`Please enter the title of a recent game you've played:`);
-    let score = Number(prompt(`On a scale of 0-5, how would you rate ${title}?`));
-    if (score > 5) {
-        score = Number(prompt(`Please rate ${title} on a scale of 0 to 5.`));
+    function Game(title, score, color) {
+        this.title = title;
+        this.score = score;
+        this.color = color;
     }
-    console.log(title, score);
+        
+    let userTitle = prompt(`Please enter the title of a recent game you've played:`);
+    let userScore = Number(prompt(`On a scale of 0-5, how would you rate ${userTitle}?`));
+    if (userScore > 5) {
+        userScore = Number(prompt(`Please rate ${userTitle} on a scale of 0 to 5.`));
+        }
 
-    if (score > 3) {
-        document.querySelector(".title").style.color = "green";
+    if (userScore >= 4 && userScore <= 5) {
+        userColor = "green";
+    } else if (userScore < 4) {
+        userColor = "red";
     } else {
-        document.querySelector(".title").style.color = "red";
+        userColor = null;
     }
 
-    let titleP = document.querySelector(".title");
-    console.log(titleP.textContent);
-    titleP.innerHTML += `<br>You recently played ${title}.`;
-    let scoreP = document.querySelector(".score");
-    console.log(scoreP.textContent);
-    scoreP.innerHTML += `<br>You gave ${title} a score of ${score} out of 5.`;
+    let userGame = new Game(userTitle, userScore, userColor);
+    console.log(userGame);
+
+    let gameTitles = document.querySelector(".titles");
+    let newTitle = document.createElement("li");
+    newTitle.innerText = userGame.title;
+    if (userGame.color === "green") {
+        newTitle.style.color = "green";
+    } else if (userGame.color === "red") {
+        newTitle.style.color = "red";
+    } else {
+        newTitle.style.color = "black";
+    }
+    gameTitles.appendChild(newTitle);
+    let gameScores = document.querySelector(".scores");
+    let newScore = document.createElement("p");
+    newScore.innerText = `You gave ${userGame.title} a score of ${userGame.score} out of 5.`;
+    gameScores.appendChild(newScore);
 
 }
