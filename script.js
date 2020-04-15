@@ -27,16 +27,17 @@ function addGame() {
     let newTitle = document.createElement("li");
     newTitle.innerText = userGame.title;
     if (userGame.color === "green") {
-        newTitle.style.color = "green";
+        newTitle.style.color = "seagreen";
     } else if (userGame.color === "red") {
         newTitle.style.color = "red";
     } else {
         newTitle.style.color = "black";
     }
     gameTitles.appendChild(newTitle);
+    
     let gameScores = document.querySelector(".scores");
     let newScore = document.createElement("p");
-    newScore.innerText = `You gave ${userGame.title} a score of ${userGame.score} out of 5.`;
+    newScore.innerHTML = `You gave <b>${userGame.title}</b> a score of <b>${userGame.score}</b> out of 5.`;
     gameScores.appendChild(newScore);
 
 }
